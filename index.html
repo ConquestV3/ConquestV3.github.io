@@ -1,9 +1,235 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe (Circles & Crosses)</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --container-bg: #161625;
+            --text-color: #ffffff;
+            --cross-color: #ff4757;
+            --circle-color: #2ed573;
+            --cell-bg: #1f1f38;
+            --cell-hover: #2a2a4a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .game-container {
+            background-color: var(--container-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .status {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            min-height: 1.8rem;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .cell {
+            background-color: var(--cell-bg);
+            aspect-ratio: 1;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 3rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, transform 0.1s;
+            user-select: none;
+        }
+
+        .cell:not(.taken):hover {
+            background-color: var(--cell-hover);
+        }
+
+        .cell:active {
+            transform: scale(0.95);
+        }
+
+        .cell.x {
+            color: var(--cross-color);
+        }
+
+        .cell.o {
+            color: var(--circle-color);
+        }
+
+        .reset-btn {
+            background-color: #3742fa;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            width: 100%;
+        }
+
+        .reset-btn:hover {
+            background-color: #5760ff;
+        }
+
+        .reset-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
 <body>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    <div class="game-container">
+        <h1>Tic-Tac-Toe</h1>
+        <div class="status" id="status">X's Turn</div>
+        
+        <div class="board" id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
 
+        <button class="reset-btn" id="resetBtn">Restart Game</button>
+    </div>
+
+    <script>
+        const boardElement = document.getElementById('board');
+        const cells = document.querySelectorAll('.cell');
+        const statusElement = document.getElementById('status');
+        const resetBtn = document.getElementById('resetBtn');
+
+        let boardState = ["", "", "", "", "", "", "", "", ""];
+        let currentPlayer = "X"; // X is Cross, O is Circle
+        let isGameActive = true;
+
+        const winningConditions = [
+            [0, 1, 2], // Rows
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6], // Columns
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8], // Diagonals
+            [2, 4, 6]
+        ];
+
+        function handleCellClick(e) {
+            const clickedCell = e.target;
+            const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+
+            // Ignore click if cell is already taken or game is over
+            if (boardState[clickedCellIndex] !== "" || !isGameActive) {
+                return;
+            }
+
+            updateCell(clickedCell, clickedCellIndex);
+            checkResult();
+        }
+
+        function updateCell(cell, index) {
+            boardState[index] = currentPlayer;
+            cell.innerText = currentPlayer;
+            cell.classList.add(currentPlayer.toLowerCase(), 'taken');
+        }
+
+        function changePlayer() {
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            statusElement.innerText = `${currentPlayer}'s Turn`;
+        }
+
+        function checkResult() {
+            let roundWon = false;
+
+            for (let i = 0; i < winningConditions.length; i++) {
+                const winCondition = winningConditions[i];
+                let a = boardState[winCondition[0]];
+                let b = boardState[winCondition[1]];
+                let c = boardState[winCondition[2]];
+
+                if (a === '' || b === '' || c === '') {
+                    continue;
+                }
+                if (a === b && b === c) {
+                    roundWon = true;
+                    break;
+                }
+            }
+
+            if (roundWon) {
+                statusElement.innerText = `Player ${currentPlayer} Wins! 🎉`;
+                isGameActive = false;
+                return;
+            }
+
+            // Check for a Draw
+            let roundDraw = !boardState.includes("");
+            if (roundDraw) {
+                statusElement.innerText = "Game is a Draw! 🤝";
+                isGameActive = false;
+                return;
+            }
+
+            // If no win or draw, continue game
+            changePlayer();
+        }
+
+        function resetGame() {
+            boardState = ["", "", "", "", "", "", "", "", ""];
+            currentPlayer = "X";
+            isGameActive = true;
+            statusElement.innerText = "X's Turn";
+            cells.forEach(cell => {
+                cell.innerText = "";
+                cell.className = "cell"; // Clears 'x', 'o', and 'taken' classes
+            });
+        }
+
+        // Event Listeners
+        boardElement.addEventListener('click', handleCellClick);
+        resetBtn.addEventListener('click', resetGame);
+    </script>
 </body>
 </html>
