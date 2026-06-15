@@ -1,477 +1,420 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ConquestV3 | Software Engineer Portfolio & Resume - Premium, responsive personal resume website showcasing skills, projects, and work history.">
-    <meta name="keywords" content="ConquestV3, Software Engineer, Portfolio, Resume, Web Developer, Full-stack, Git, Tic-Tac-Toe">
-    <meta name="author" content="ConquestV3">
+    <title>Sodoo | Portfolio & To-Do Workspace</title>
+    <meta name="description" content="Professional portfolio and interactive To-Do workspace for Sodoo. Manage tasks efficiently while exploring skills, education, and projects.">
     
-    <title>ConquestV3 | Software Engineer Portfolio & Resume</title>
+    <!-- OpenGraph Metadata for SEO -->
+    <meta property="og:title" content="Sodoo | Portfolio & To-Do Workspace">
+    <meta property="og:description" content="Explore Sodoo's resume and manage your daily tasks with this advanced glassmorphic productivity workspace.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-
-    <!-- Header & Navigation -->
-    <header class="header">
+<body class="dark-theme">
+    <!-- Background glow elements for rich aesthetics -->
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
+    
+    <!-- Navigation Bar -->
+    <header class="glass-navbar">
         <div class="nav-container">
-            <a href="#home" class="logo">
-                <i data-lucide="terminal"></i> ConquestV3
+            <a href="#" class="nav-logo" id="nav-logo-link">
+                <span class="logo-accent">&lt;</span>Sodoo<span class="logo-accent">.dev /&gt;</span>
             </a>
             
-            <nav class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <nav class="nav-tabs" aria-label="Main Navigation">
+                <button class="nav-tab active" id="tab-resume" data-view="resume-view" aria-selected="true" role="tab">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                    <span>Resume</span>
+                </button>
+                <button class="nav-tab" id="tab-todo" data-view="todo-view" aria-selected="false" role="tab">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                    <span>To-Do List</span>
+                </button>
             </nav>
             
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <i data-lucide="sun" class="sun-icon"></i>
-                    <i data-lucide="moon" class="moon-icon"></i>
-                </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu">
-                    <i data-lucide="menu"></i>
+                <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
+                    <!-- Sun Icon (shown in dark theme) -->
+                    <svg id="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <!-- Moon Icon (shown in light theme) -->
+                    <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="container">
-
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <span class="hero-greeting">Welcome to my space</span>
-                    <h1 class="hero-name">Hi, I'm ConquestV3</h1>
-                    <div class="hero-title">
-                        I am a <span id="typingTarget"></span><span class="cursor">|</span>
-                    </div>
-                    <p class="hero-description">
-                        Passionate about crafting high-performance web systems, elegant user interfaces, and solving complex algorithmic challenges. Let's build something exceptional together.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">
-                            <i data-lucide="mail"></i> Get In Touch
-                        </a>
-                        <a href="#" class="btn btn-secondary" onclick="window.print(); return false;">
-                            <i data-lucide="download"></i> Print / Save PDF
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-avatar-container">
-                    <div class="avatar-wrapper">
-                        <img src="assets/avatar.png" alt="ConquestV3 Avatar" class="avatar-img">
-                        <div class="avatar-decoration"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Me Section (Bento Grid) -->
-        <section id="about" class="section">
-            <h2 class="section-title">About Me</h2>
+    <!-- Main Container -->
+    <main class="main-content">
+        
+        <!-- ================= VIEW 1: RESUME & PORTFOLIO ================= -->
+        <section id="resume-view" class="view-panel active" aria-labelledby="resume-heading">
+            <h1 class="sr-only" id="resume-heading">Resume and Portfolio</h1>
             
-            <div class="bento-grid">
-                <!-- Overview Card -->
-                <div class="bento-card bento-span-2 bento-row-2">
-                    <div class="card-icon"><i data-lucide="user"></i></div>
-                    <h3>My Journey</h3>
-                    <p>
-                        I am a software developer focused on web architectures, UI engineering, and game development. I love turning concepts into responsive digital environments. My work combines clean, structured backend configurations with beautiful, intuitive client side layouts.
-                    </p>
-                    <p style="margin-top: 1rem;">
-                        I believe in lifelong learning, test-driven development, and modular architecture. Whether optimizing API endpoints or drawing smooth vector math, I code with scalability in mind.
-                    </p>
-                </div>
-
-                <!-- Stats Card -->
-                <div class="bento-card">
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-num">3+</div>
-                            <div class="stat-label">Years Code</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-num">15+</div>
-                            <div class="stat-label">Projects</div>
-                        </div>
+            <!-- Hero Banner -->
+            <div class="hero-card glass-card">
+                <div class="hero-grid">
+                    <div class="hero-image-container">
+                        <img id="avatar-image" src="avatar.png" alt="Sodoo Developer Avatar" class="hero-avatar">
                     </div>
-                </div>
-
-                <!-- Core Pillars Card -->
-                <div class="bento-card">
-                    <div class="card-icon"><i data-lucide="code-2"></i></div>
-                    <h3>Core Pillars</h3>
-                    <p>Modular APIs, Responsive Layouts, Interactive Games.</p>
-                </div>
-
-                <!-- Philosophy / Quote Card -->
-                <div class="bento-card bento-span-3">
-                    <div class="card-icon"><i data-lucide="quote"></i></div>
-                    <blockquote style="font-style: italic; font-size: 1.1rem; border-left: 3px solid var(--accent-primary); padding-left: 1rem;">
-                        "Simplicity is the soul of efficiency. The best systems are those that solve complex tasks with clean, elegant architectures."
-                    </blockquote>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="section">
-            <h2 class="section-title">My Skills</h2>
-            
-            <div class="skills-container">
-                <!-- Frontend Skills -->
-                <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <i data-lucide="layout"></i> Frontend Development
-                    </h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">HTML5 & Semantic Markup</span>
-                                <span class="skill-percentage">95%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-percent="95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Vanilla CSS & Responsive Design</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-percent="90%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">JavaScript (ES6+)</span>
-                                <span class="skill-percentage">88%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-percent="88%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Modern UI/UX Systems</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-percent="85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Backend & Tools Skills -->
-                <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <i data-lucide="server"></i> Backend & Development Tools
-                    </h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Node.js / API Architectures</span>
-                                <span class="skill-percentage">80%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-percent="80%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Python & Algorithmic Logic</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-percent="85%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Git & GitHub Workflows</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-percent="90%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Database Systems (SQL/NoSQL)</span>
-                                <span class="skill-percentage">78%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-percent="78%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="section">
-            <h2 class="section-title">Experience</h2>
-            
-            <div class="timeline">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2024 - Present</span>
-                        <h3 class="timeline-role">Full-Stack Engineer (Freelance)</h3>
-                        <div class="timeline-company">Self-Employed</div>
-                        <p class="timeline-desc">
-                            Design and build scalable client websites, interactive web applications, and dynamic gaming widgets. Integrate secure APIs, manage responsive design variables, and implement customized user workflows.
+                    <div class="hero-text">
+                        <span class="badge badge-accent">Available for Opportunities</span>
+                        <h2 class="hero-name">Hello, I'm <span class="gradient-text">Sodoo</span></h2>
+                        <h3 class="hero-title">Software Engineer & Frontend Developer</h3>
+                        <p class="hero-desc">
+                            Passionate CS student crafting premium web experiences. I combine clean, semantic architectures with rich interactive design to build web systems that feel fast and look beautiful.
                         </p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2023 - 2024</span>
-                        <h3 class="timeline-role">Junior Frontend Developer</h3>
-                        <div class="timeline-company">TechInnovate Solutions</div>
-                        <p class="timeline-desc">
-                            Cooperated in constructing web app components using modern design systems. Optimized page load layouts, improved overall accessibility scores, and refactored core CSS frameworks.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2021 - 2023</span>
-                        <h3 class="timeline-role">Computer Science Student</h3>
-                        <div class="timeline-company">University Portfolio Academy</div>
-                        <p class="timeline-desc">
-                            Studied fundamental data structures, software development lifecycles, database engines, and web paradigms. Created minor open-source contributions and logic games.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="section">
-            <h2 class="section-title">My Projects</h2>
-            
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="games">Games</button>
-                <button class="filter-btn" data-filter="frontend">Frontend</button>
-                <button class="filter-btn" data-filter="tools">Tools & Configs</button>
-            </div>
-            
-            <div class="projects-grid">
-                <!-- Project 1 (Interactive game) -->
-                <div class="project-card" data-category="games">
-                    <div class="project-img-container">
-                        <i data-lucide="gamepad-2" class="project-img-placeholder"></i>
-                    </div>
-                    <div class="project-card-content">
-                        <div class="project-tags">
-                            <span class="project-tag">HTML5</span>
-                            <span class="project-tag">CSS Grid</span>
-                            <span class="project-tag">JavaScript</span>
-                        </div>
-                        <h3 class="project-title">Tic-Tac-Toe Arcade</h3>
-                        <p class="project-desc">
-                            A highly polished execution of the classic Circles & Crosses game. Features fluid turn handling, win/draw condition evaluations, and neon state indicators.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link" data-open-game>
-                                <i data-lucide="play-circle"></i> Play Game (Live Modal)
+                        <div class="hero-socials">
+                            <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" id="btn-github">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon-svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                GitHub
                             </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 (Portfolio) -->
-                <div class="project-card" data-category="frontend">
-                    <div class="project-img-container">
-                        <i data-lucide="layout-template" class="project-img-placeholder"></i>
-                    </div>
-                    <div class="project-card-content">
-                        <div class="project-tags">
-                            <span class="project-tag">CSS Bento Grid</span>
-                            <span class="project-tag">Print Media</span>
-                            <span class="project-tag">Vanilla JS</span>
-                        </div>
-                        <h3 class="project-title">Conquest Premium Portfolio</h3>
-                        <p class="project-desc">
-                            A showcase-level, light/dark responsive personal website. Integrated print rules render the site perfectly into a professional resume format.
-                        </p>
-                        <div class="project-links">
-                            <a href="#home" class="project-link">
-                                <i data-lucide="link"></i> Back to Hero
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" id="btn-linkedin">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon-svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                LinkedIn
                             </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 (Framework framework) -->
-                <div class="project-card" data-category="tools">
-                    <div class="project-img-container">
-                        <i data-lucide="cpu" class="project-img-placeholder"></i>
-                    </div>
-                    <div class="project-card-content">
-                        <div class="project-tags">
-                            <span class="project-tag">NodeJS</span>
-                            <span class="project-tag">API Build</span>
-                            <span class="project-tag">JSON Schema</span>
-                        </div>
-                        <h3 class="project-title">Conquest Framework V3</h3>
-                        <p class="project-desc">
-                            A framework helper for local build automations, script generation, and structured API configuration setups. Enables clean workspace setups.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/ConquestV3" target="_blank" class="project-link">
-                                <i data-lucide="github"></i> View GitHub
+                            <a href="mailto:sodoo@example.com" class="btn btn-primary btn-sm" id="btn-email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon-svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                Email Me
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section">
-            <h2 class="section-title">Get In Touch</h2>
             
-            <div class="contact-container">
-                <!-- Info Column -->
-                <div class="contact-info">
-                    <div class="contact-info-text">
-                        <h3>Let's Collaborate!</h3>
-                        <p>
-                            Interested in discussing a project, freelance collaboration, or general technical roles? Send a message and let's coordinate.
-                        </p>
+            <!-- Portfolio Grid Content -->
+            <div class="portfolio-grid">
+                
+                <!-- Left Column: About & Education -->
+                <div class="portfolio-column flex-col">
+                    <!-- About Me Card -->
+                    <div class="glass-card panel-card">
+                        <h3 class="panel-title">
+                            <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                            Self-Introduction
+                        </h3>
+                        <div class="intro-content">
+                            <p>
+                                I am an eager developer driven by curiosity. My journey started with customizing simple scripts, which quickly evolved into a full-scale obsession with structural engineering, web architecture, and clean code.
+                            </p>
+                            <p>
+                                I focus on building robust front-end user interfaces that offer high usability, visual excellence, and complete accessibility for all users. Currently, I am expanding my skills in backend engineering, building with Node.js and SQL to achieve full-stack competence.
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="contact-methods">
-                        <div class="contact-method-item">
-                            <div class="contact-icon"><i data-lucide="mail"></i></div>
-                            <div class="contact-method-details">
-                                <h4>Email</h4>
-                                <p><a href="mailto:conquestv3.dev@example.com">conquestv3.dev@example.com</a></p>
+                    <!-- Education Card -->
+                    <div class="glass-card panel-card">
+                        <h3 class="panel-title">
+                            <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                            Education
+                        </h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-date">2023 - Present</span>
+                                <h4 class="timeline-degree">B.S. in Computer Science & Engineering</h4>
+                                <span class="timeline-school">Valiant Institute of Technology</span>
+                                <p class="timeline-desc">Specializing in Web Systems and Interface Design. Coursework includes Data Structures, Advanced Algorithms, Database Systems, and UI/UX Design.</p>
                             </div>
-                        </div>
-
-                        <div class="contact-method-item">
-                            <div class="contact-icon"><i data-lucide="map-pin"></i></div>
-                            <div class="contact-method-details">
-                                <h4>Location</h4>
-                                <p>Seoul, South Korea</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-method-item">
-                            <div class="contact-icon"><i data-lucide="github"></i></div>
-                            <div class="contact-method-details">
-                                <h4>GitHub</h4>
-                                <p><a href="https://github.com/ConquestV3" target="_blank">github.com/ConquestV3</a></p>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-date">2020 - 2023</span>
+                                <h4 class="timeline-degree">Advanced High School Diploma</h4>
+                                <span class="timeline-school">Science & Tech Academy</span>
+                                <p class="timeline-desc">Graduated with High Honors. Led the Computer Club and competed in regional coding competitions.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Form Column -->
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message mock-sent successfully! 🎉');">
-                        <div class="form-group">
-                            <label for="form-name">Name</label>
-                            <input type="text" id="form-name" class="form-input" placeholder="Your Name" required>
+                
+                <!-- Right Column: Skills & Featured Project -->
+                <div class="portfolio-column flex-col">
+                    <!-- Skills Card -->
+                    <div class="glass-card panel-card">
+                        <h3 class="panel-title">
+                            <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            Technical Expertise
+                        </h3>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">HTML5 / Semantic Layouts</span>
+                                    <span class="skill-percent">95%</span>
+                                </div>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">CSS3 / Flexbox & CSS Grid</span>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">JavaScript (ES6+) & DOM Control</span>
+                                    <span class="skill-percent">88%</span>
+                                </div>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill" style="width: 88%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">React / Component Architecture</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Git / Version Control & Workflows</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="form-email">Email</label>
-                            <input type="email" id="form-email" class="form-input" placeholder="your.email@example.com" required>
+                    </div>
+                    
+                    <!-- Featured Project Card -->
+                    <div class="glass-card panel-card">
+                        <h3 class="panel-title">
+                            <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            Featured Assignment Project
+                        </h3>
+                        <div class="project-showcase">
+                            <div class="project-banner">
+                                <div class="project-banner-overlay">
+                                    <span class="badge badge-primary">Interactive Application</span>
+                                    <h4>Advanced To-Do Workspace</h4>
+                                    <p>Our responsive productivity dashboard, designed using pure JavaScript, HSL variable systems, dynamic task filtering, and client side state persistence.</p>
+                                    <button class="btn btn-primary btn-sm btn-nav-to-todo" id="project-explore-btn">
+                                        Open Application
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon-svg-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="form-message">Message</label>
-                            <textarea id="form-message" class="form-input" placeholder="Hello ConquestV3, I would like to discuss..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">
-                            <i data-lucide="send"></i> Send Message
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
-
+        
+        <!-- ================= VIEW 2: TO-DO WORKSPACE ================= -->
+        <section id="todo-view" class="view-panel" aria-labelledby="todo-heading">
+            <h1 class="sr-only" id="todo-heading">Task Manager Workspace</h1>
+            
+            <div class="workspace-layout">
+                
+                <!-- Left panel: Task Creator & Statistics -->
+                <aside class="workspace-sidebar">
+                    <!-- Statistics Dashboard Card -->
+                    <div class="glass-card stats-card">
+                        <h3 class="panel-subtitle-light">Task Analytics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <span class="stat-number" id="stats-total">0</span>
+                                <span class="stat-label">Total</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number text-accent" id="stats-active">0</span>
+                                <span class="stat-label">Active</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number text-success" id="stats-completed">0</span>
+                                <span class="stat-label">Completed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-section">
+                            <div class="progress-info">
+                                <span class="progress-label">Completion Status</span>
+                                <span class="progress-value" id="stats-progress-percent">0%</span>
+                            </div>
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill" id="stats-progress-bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Task Input Form -->
+                    <div class="glass-card form-card">
+                        <h3 class="panel-title-sm">Create New Task</h3>
+                        <form id="todo-form" class="task-form">
+                            <!-- Task Name -->
+                            <div class="form-group">
+                                <label for="task-name-input">Task Title <span class="required">*</span></label>
+                                <input type="text" id="task-name-input" placeholder="What needs to be done?" required maxlength="80">
+                            </div>
+                            
+                            <!-- Category tags -->
+                            <div class="form-group">
+                                <label for="task-category-select">Category</label>
+                                <select id="task-category-select">
+                                    <option value="Personal">🏠 Personal</option>
+                                    <option value="Work">💼 Work</option>
+                                    <option value="Studies">📚 Studies</option>
+                                    <option value="Coding">💻 Coding</option>
+                                    <option value="Health">🍏 Health</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Priority & Due Date Row -->
+                            <div class="form-row">
+                                <div class="form-group half-width">
+                                    <label for="task-priority-select">Priority</label>
+                                    <select id="task-priority-select">
+                                        <option value="Low">Low</option>
+                                        <option value="Medium" selected>Medium</option>
+                                        <option value="High">High</option>
+                                    </select>
+                                </div>
+                                <div class="form-group half-width">
+                                    <label for="task-date-input">Due Date</label>
+                                    <input type="date" id="task-date-input">
+                                </div>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary btn-block" id="btn-add-task">
+                                <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                Add Task
+                            </button>
+                        </form>
+                    </div>
+                </aside>
+                
+                <!-- Right panel: Task List & Filtering Controls -->
+                <div class="workspace-main flex-col">
+                    <!-- Filters & Search Toolbar -->
+                    <div class="glass-card toolbar-card">
+                        <div class="toolbar-search">
+                            <div class="search-wrapper">
+                                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <input type="text" id="search-input" placeholder="Search tasks by title..." aria-label="Search tasks">
+                            </div>
+                        </div>
+                        
+                        <div class="toolbar-controls">
+                            <!-- Filter Buttons -->
+                            <div class="filter-group" role="group" aria-label="Filter tasks by status">
+                                <button class="btn btn-tab active" data-filter="all" id="filter-all">All</button>
+                                <button class="btn btn-tab" data-filter="active" id="filter-active">Active</button>
+                                <button class="btn btn-tab" data-filter="completed" id="filter-completed">Completed</button>
+                            </div>
+                            
+                            <!-- Sorting Selector -->
+                            <div class="sort-wrapper">
+                                <label for="sort-select" class="sr-only">Sort by</label>
+                                <select id="sort-select" class="select-sm">
+                                    <option value="created-desc">Newest First</option>
+                                    <option value="created-asc">Oldest First</option>
+                                    <option value="due-date">Due Date</option>
+                                    <option value="priority-desc">Highest Priority</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Task List View -->
+                    <div class="tasks-container flex-grow">
+                        <ul id="task-list" class="task-list-element">
+                            <!-- JS will inject task items here -->
+                        </ul>
+                        
+                        <!-- Empty State message -->
+                        <div id="todo-empty-state" class="empty-state">
+                            <div class="empty-state-graphic">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <h3>All Caught Up!</h3>
+                            <p>No tasks match your selection. Create a new task or modify your filters to see more.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </section>
+        
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="nav-container footer-content">
-            <div class="footer-text">
-                &copy; 2026 ConquestV3. All Rights Reserved. Built with Vanilla Web Standard technologies.
-            </div>
-            <div class="footer-socials">
-                <a href="https://github.com/ConquestV3" target="_blank" class="footer-social-link" aria-label="GitHub">
-                    <i data-lucide="github"></i>
-                </a>
-                <a href="mailto:conquestv3.dev@example.com" class="footer-social-link" aria-label="Email">
-                    <i data-lucide="mail"></i>
-                </a>
-            </div>
-        </div>
+    <!-- Professional Footer -->
+    <footer class="footer-layout">
+        <p>&copy; 2026 Sodoo. All rights reserved. Created with help from AI tools.</p>
+        <p class="footer-meta">Deadline: June 24, 2026. Optimized for GitHub Pages.</p>
     </footer>
 
-    <!-- Interactive Tic-Tac-Toe Game Modal -->
-    <div class="modal" id="gameModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="closeGame" aria-label="Close modal">
-                <i data-lucide="x"></i>
-            </button>
-            <h3 class="game-title">Tic-Tac-Toe Arcade</h3>
-            <p class="game-subtitle">Interactive Game built with JavaScript</p>
-            
-            <div class="game-status" id="gameStatus">Player X's Turn</div>
-            
-            <div class="game-board" id="gameBoard">
-                <div class="game-cell" data-index="0"></div>
-                <div class="game-cell" data-index="1"></div>
-                <div class="game-cell" data-index="2"></div>
-                <div class="game-cell" data-index="3"></div>
-                <div class="game-cell" data-index="4"></div>
-                <div class="game-cell" data-index="5"></div>
-                <div class="game-cell" data-index="6"></div>
-                <div class="game-cell" data-index="7"></div>
-                <div class="game-cell" data-index="8"></div>
+    <!-- Task Edit Modal (Overlay) -->
+    <div id="edit-modal" class="modal-overlay hidden" aria-modal="true" role="dialog">
+        <div class="glass-card modal-card">
+            <div class="modal-header">
+                <h3>Edit Task Details</h3>
+                <button id="modal-close" class="btn-icon" aria-label="Close modal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
             </div>
-            
-            <button class="btn btn-primary game-reset-btn" id="gameResetBtn">
-                <i data-lucide="rotate-ccw"></i> Restart Game
-            </button>
+            <form id="edit-form" class="task-form">
+                <input type="hidden" id="edit-task-id">
+                
+                <div class="form-group">
+                    <label for="edit-task-name">Task Title <span class="required">*</span></label>
+                    <input type="text" id="edit-task-name" required maxlength="80">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-task-category">Category</label>
+                    <select id="edit-task-category">
+                        <option value="Personal">🏠 Personal</option>
+                        <option value="Work">💼 Work</option>
+                        <option value="Studies">📚 Studies</option>
+                        <option value="Coding">💻 Coding</option>
+                        <option value="Health">🍏 Health</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="edit-task-priority">Priority</label>
+                        <select id="edit-task-priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="edit-task-date">Due Date</label>
+                        <input type="date" id="edit-task-date">
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="btn-edit-cancel" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Script Entry Point -->
-    <script src="script.js"></script>
+    <!-- JavaScript Script -->
+    <script src="app.js"></script>
 </body>
 </html>
